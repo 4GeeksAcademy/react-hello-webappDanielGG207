@@ -1,0 +1,69 @@
+
+.FullCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.Contenedor {
+    width: 60%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+
+
+
+.posicion-boton {
+    width: 20%;
+    margin-right: 5px;
+    margin-left: auto;
+    
+}
+
+.Contact-box {
+    border: 1px 1px 1px 1px  solid  gray ;
+    width: 99.9%;
+    margin-top: 5px;
+    
+
+}
+
+img {
+    width: 40%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.img {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.boton2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.return {
+    all: unset;
+    color: blue;
+    
+}
+
+.row {
+     border: 1px 1px 1px solid gray; 
+     
+}
+
+.container.text-center  {
+    border:  dotted gray !important;
+}
