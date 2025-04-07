@@ -22,28 +22,33 @@ function AddContact () {
          <div className="Contenedor">
             
             <div className="Contact-box">
+            
+            <form>
 
-             <h1> Add a new contact</h1>
+            <h1> Add a new contact</h1>
              
-             <p>Full Name</p>
-             <input type="text" className="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" name = "FullName" 
+             <label for="FullName">Name</label>
+             <input type="text" className="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" name = "FullName" id = "FullName" 
              
              onChange={(event)=> {setFullName(event.target.value)}}/>
 
-             <p>Email</p>
-             <input type="text" className="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name = "FullName" 
+             <label for="Email">Email</label>
+             <input type="text" className="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" name = "Email" id ="Email"
              
              onChange={(event)=> {setEmail(event.target.value)}}/>
 
-             <p>Phone</p>
-             <input type="text" className="form-control" placeholder="Phone" aria-label="Username" aria-describedby="basic-addon1" name = "FullName" 
+             <label for="Phone">Phone</label>
+             <input type="text" className="form-control" placeholder="Phone" aria-label="Username" aria-describedby="basic-addon1" name = "Phone" id = "Phone"
              
              onChange={(event)=> {setPhone(event.target.value)}}/>
 
-             <p>Address</p>
-             <input type="text" className="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1" name = "FullName" 
+             <label for="Address">Address</label>
+             <input type="text" className="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1" name = "Address" id = "Address"
              
              onChange={(event)=> {setAddress(event.target.value)}}/>
+
+            </form>
+             
 
              <button type="button" className="btn btn-primary boton2" onClick={(event)=> {
                           let data = {
@@ -63,9 +68,9 @@ function AddContact () {
       
                       .then((response) =>{ return (response.json())})
       
-                      .then((data) =>{console.log(data)})
+                      .then(() =>{navigate("/")})
       
-                      .catch()
+                      .catch((error)=>{console.log(error)})
       
                       navigate("/")
 

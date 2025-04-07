@@ -5,106 +5,106 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 export const Home = () => {
-	const {store, dispatch} =useGlobalReducer()
+	const { store, dispatch } = useGlobalReducer()
 
-    const [contacts, setContacts] = useState([])
-    const navigate = useNavigate()
+	const [contacts, setContacts] = useState([])
+	const navigate = useNavigate()
 	const [change, setChange] = useState(false)
-	
+
 	useEffect(() => {
-	fetch("https://playground.4geeks.com/contact/agendas/Daniel/contacts")
+		fetch("https://playground.4geeks.com/contact/agendas/Daniel/contacts")
 
-	.then((response) => {
-		
-		return response.json()
-	})
+			.then((response) => {
 
-	.then((data) => {
-		setContacts(data.contacts)
-		dispatch({
-			type:"modify_contacts",
-			payload: data.contacts
-		})
-		
-		console.log(store.contacts)
-		console.log( contacts)
+				return response.json()
+			})
 
+			.then((data) => {
+				setContacts(data.contacts)
+				dispatch({
+					type: "modify_contacts",
+					payload: data.contacts
+				})
 
-	})
+				console.log(store.contacts)
+				console.log(contacts)
 
 
-    .catch()
-	}, [change] )
+			})
 
-	
+
+			.catch((error)=>{console.log(error)})
+	}, [change, contacts, dispatch, store.contacts])
+
+
 
 	console.log("//////////////////")
 
 	console.log(store.contacts)
-	console.log( contacts)
-	
+	console.log(contacts)
 
-	
+
+
 	return (
-		
+
 		<div className="FullCenter">
 			<div className="Contenedor">
-			<button type="button" class="btn btn-success posicion-boton" onClick={() => {
-				navigate("/add-contact")
-			}
-				
-			}>Add New Contact</button>
+				<button type="button" className="btn btn-success posicion-boton" onClick={() => {
+					navigate("/add-contact")
+				}
 
-            <div className="Contact-box">
-				{store.contacts.map((object) => {
+				}>Add New Contact</button>
 
-					return(
-						<div className="container text-center">
-						<div className="row">
-						  <div className="col img">
-							<img src="https://media.istockphoto.com/id/1332100919/vector/man-icon-black-icon-person-symbol.jpg?s=612x612&w=0&k=20&c=AVVJkvxQQCuBhawHrUhDRTCeNQ3Jgt0K1tXjJsFy1eg="/>
-						  </div>
-						  <div className="col-7">
-						  {object.name}
-						  <p> <i className="fa-solid fa-location-dot"></i> {object.address}</p>
-						  <p> <i className="fa-solid fa-phone"></i> {object.phone}</p>
-						  <p><i className="fa-solid fa-envelope"></i> {object.email}</p>
-						  </div>
+				<div className="Contact-box">
+					{store.contacts.map((object, index) => {
 
-						  <div className="col">
-							<button  onClick={(event)=> {
-							let id = object.id
-                             console.log(id)
+						return (
+							<div className="container text-center" key = {index}>
+								<div className="row">
+									<div className="col img">
+										<img src="https://media.istockphoto.com/id/1332100919/vector/man-icon-black-icon-person-symbol.jpg?s=612x612&w=0&k=20&c=AVVJkvxQQCuBhawHrUhDRTCeNQ3Jgt0K1tXjJsFy1eg=" />
+									</div>
+									<div className="col-7">
+										{object.name}
+										<p> <i className="fa-solid fa-location-dot"></i> {object.address}</p>
+										<p> <i className="fa-solid fa-phone"></i> {object.phone}</p>
+										<p><i className="fa-solid fa-envelope"></i> {object.email}</p>
+									</div>
 
-							 fetch("https://playground.4geeks.com/contact/agendas/Daniel/contacts/" + object.id , {method: "DELETE"})
+									<div className="col">
+										<button onClick={() => {
+											let id = object.id
+											console.log(id)
 
-							 .then(() => {setChange(!change)})
+											fetch("https://playground.4geeks.com/contact/agendas/Daniel/contacts/" + object.id, { method: "DELETE" })
 
-							 .then()
-							 
-							 .catch
+												.then(() => { setChange(!change) })
+
+												.then()
+
+												.catch((error)=> {console.log(error)})
 
 
-							}}><i className="fa-solid fa-trash"></i></button>
-							<button> <i class="fa-solid fa-pen-to-square" onClick={()=>{
-								console.log(object.id)
-								navigate("/edit/" + object.id)
-							}}>
-								</i></button>
-							
-						  </div>
-						</div>
-					  </div>
-					)
-				})}
+										}}><i className="fa-solid fa-trash"></i></button>
+										<button> <i className="fa-solid fa-pen-to-square" onClick={() => {
+											console.log(object.id)
+											navigate("/edit/" + object.id)
+										}}>
+										</i></button>
+
+									</div>
+								</div>
+							</div>
+						)
+					})}
+				</div>
 			</div>
-			</div>
 
-			
 
-			
-			
-			
+
+
+
+
 		</div>
 	);
 }; 
