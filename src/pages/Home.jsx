@@ -7,7 +7,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 export const Home = () => {
 	const { store, dispatch } = useGlobalReducer()
 
-	const [contacts, setContacts] = useState([])
+	
 	const navigate = useNavigate()
 	const [change, setChange] = useState(false)
 
@@ -20,28 +20,28 @@ export const Home = () => {
 			})
 
 			.then((data) => {
-				setContacts(data.contacts)
+				
 				dispatch({
 					type: "modify_contacts",
 					payload: data.contacts
 				})
 
-				console.log(store.contacts)
-				console.log(contacts)
+				
+				
 
 
 			})
 
 
 			.catch((error)=>{console.log(error)})
-	}, [change, contacts, dispatch, store.contacts])
+	}, [change, dispatch])
 
 
 
 	console.log("//////////////////")
 
 	console.log(store.contacts)
-	console.log(contacts)
+	
 
 
 
@@ -78,9 +78,15 @@ export const Home = () => {
 
 											fetch("https://playground.4geeks.com/contact/agendas/Daniel/contacts/" + object.id, { method: "DELETE" })
 
-												.then(() => { setChange(!change) })
+												.then((response) => {
+													if (!response.ok) {throw new Error("Error al eliminar contacto")}
 
-												.then()
+													else {
+														return(response.json)
+													}
+												})
+
+												.then(() => { setChange(!change) })
 
 												.catch((error)=> {console.log(error)})
 

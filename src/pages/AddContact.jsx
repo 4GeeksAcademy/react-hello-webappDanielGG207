@@ -72,7 +72,7 @@ function AddContact () {
       
                       .catch((error)=>{console.log(error)})
       
-                      navigate("/")
+                      
 
              }}>Add a new contact </button>
 

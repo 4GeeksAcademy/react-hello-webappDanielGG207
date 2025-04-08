@@ -86,11 +86,11 @@ function EditContact () {
       
                       .then((response) =>{ return (response.json())})
       
-                      .then((data) =>{console.log(data)})
+                      .then(() =>{navigate("/")})
       
                       .catch()
       
-                      navigate("/")
+                     
 
              }}>Edit Contact</button>
 
